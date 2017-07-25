@@ -10,18 +10,19 @@
 (line-number-mode 1)
 (set-face-attribute 'default nil :font "微软雅黑 12")
 
-;;;(setq buffer-file-coding-system "UTF-8-dos")
-
 ;;;;在以上设置以后，安装以下的包，
 ;;;; M-x install.packages RET company
 ;;;; M-x install.packages RET helm
 ;;;; M-x install.packages RET ess
 ;;;; M-x install.packages RET yasnippet
+;;;; M-x install.packages RET cygwin-mount
 
 ;;;;;然后再加入下面的代码
 
+;;;set the HOME to c:/xuyang in windows
 
 ;;;for cygwin
+;;;;cygwin is installed at c:/cygwin64
 (setenv "PATH" (concat "c:/cygwin64/bin;" (getenv "PATH")))
 (setq exec-path (cons "c:/cygwin64/bin/" exec-path))
 (require 'cygwin-mount)
@@ -38,6 +39,7 @@
 
 
 ;;;;;;;;for ssh within emacs  under windows
+;;;;;  https://github.com/d5884/fakecygpty
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (load "fakecygpty")
 (require 'fakecygpty)
@@ -78,47 +80,6 @@
 (require 'yasnippet)
 ;;;;;;;(setq yas-snippet-dirs '(/yasnippet/snippets"))
 (yas-global-mode 1)
-
-
-(defun duplicate-line()
-  (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (move-beginning-of-line 1)
-)
-;;(global-set-key (kbd "C-c C-v") 'duplicate-line)
-
-(defun select-multi-line (my-begin-line my-end-line)
-  "select multiple lines by line number"
-  (interactive "nbegin line number to select:\nn(%s-):end line number:")
-  (let ((cur-line (line-number-at-pos)))
-       (beginning-of-line (+ 1 (- my-begin-line cur-line)))
-       (set-mark (point))
-       ;;(make-marker)
-       (beginning-of-line (+ 2 (- my-end-line my-begin-line)))))
-       ;;(kill-region (mark) (point))
-       ;;(yank)
-       ;;(message "line %d - %d is copied" my-begin-line my-end-line)))
-
-(global-set-key (kbd "C-c m") 'select-multi-line)
-
-(defun paste-lines (target-line)
-   "paste multiple lines to target line"
-  (interactive "ntarget line to paste:")
-  (let ((cur-line (line-number-at-pos)))
-       (beginning-of-line (+ 1 (- target-line cur-line)))
-       (yank)))
-
-;;(global-set-key (kbd "C-c C-m") 'paste-lines)
-  
-(defun comment-whole-line (&optional arg)
-  "comment the line"
-  (interactive "P")
-  (let ((beg (line-beginning-position))
-	(end (+ 1 (line-end-position arg))))
-    (comment-or-uncomment-region beg end))
-  )
 
 (defun copy-line (&optional arg)
   "Save current line into Kill-Ring without mark the line"
@@ -194,15 +155,6 @@
 					  ))))
 
 
-(setq tramp-default-method "plink")
-
-(defun scp-to-wp (orgfile htmlfile)
-  ;;;convert the coding system and scp it
-  (shell-command "~/blog/msync.sh")
-  )
-
-(setq org-publish-after-publishing-hook 'scp-to-wp)
-
 (setq org-publish-project-alist
       '(("org"
 	 :base-directory "~/blog"
@@ -223,11 +175,6 @@
 	 :publishing-function org-publish-attachment)
 	))
 
-(setq org-export-default-language "zh-CN")
-
-;;;;;;;; for magit
-(add-to-list 'exec-path "C:/Program Files (x86)/Git/cmd")
-
 (defun mpub (&optional arg)
   "pub current org file to blog"
   (interactive "P")
@@ -235,6 +182,12 @@
   (shell-command "~/blog/msync.sh"))
 
 (global-set-key (kbd "C-x p") 'mpub)
+
+(setq org-export-default-language "zh-CN")
+
+;;;;;;;; for magit
+(add-to-list 'exec-path "C:/Program Files (x86)/Git/cmd")
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
