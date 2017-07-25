@@ -6,3 +6,8 @@ windows下emacs的配置文件，
 
 其中还包括有两个文件，一个是.bashrc ， 另一个
 是博客发布的文件 msync.sh
+
+注意，不要把R，lisp什么需要在shell中用到的工具装到"C:\Programming Files"
+目录下， 因为这个目录名中有空格，很多地方的处理会有问题。
+
+目前把cygwin，R都直接安装在C:根目录下。
