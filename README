@@ -1,0 +1,8 @@
+windows下emacs的配置文件，
+
+1. 集成了cygwin的shell
+2. 可以使用ssh登录到远程机器。
+3. 可以自动发布org格式的博客
+
+其中还包括有两个文件，一个是.bashrc ， 另一个
+是博客发布的文件 msync.sh
