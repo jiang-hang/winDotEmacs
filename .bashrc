@@ -24,7 +24,8 @@ PATH=.
 PATH=$PATH:/cygdrive/c/cygwin64/bin
 PATH=$PATH:/usr/x11R6/bin
 PATH=$PATH:/usr/bin
-PATH=$PATH:"/cygdrive/c/R/R-3.4.1/bin"
+PATH=$PATH:/cygdrive/c/R/R-3.4.1/bin
+PATH=$PATH:/cygdrive/c/sbcl
 PATH=$PATH:`cygpath -S`
 PATH=$PATH:`cygpath -W`
 

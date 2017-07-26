@@ -8,7 +8,7 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (line-number-mode 1)
-(set-face-attribute 'default nil :font "Î¢ÈíÑÅºÚ 12")
+(set-face-attribute 'default nil :font "Î¢ÈíÑÅºÚ 16")
 
 ;;;(setq buffer-file-coding-system "UTF-8-dos")
 
@@ -242,12 +242,15 @@
 
 (global-set-key (kbd "C-x p") 'mpub)
 
+(add-to-list 'exec-path "C:/sbcl")
+(setq inferior-lisp-program "sbcl") 
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (cygwin-mount yasnippet helm company magit))))
+ '(package-selected-packages (quote (slime cygwin-mount yasnippet helm company magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
